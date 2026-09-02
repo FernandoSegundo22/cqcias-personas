@@ -23,5 +23,35 @@ services:
       timeout: 5s
       retries: 10
 
+  backend:
+    build:
+      context: ./backend
+
+    container_name: cqcias-backend
+
+    environment:
+      DB_URL: jdbc:mysql://database:3306/CQCIAS
+      DB_USERNAME: cqcias_user
+      DB_PASSWORD: cqcias_password
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      database:
+        condition: service_healthy
+
+  frontend:
+      build:
+        context: ./frontend
+
+      container_name: cqcias-frontend
+
+      ports:
+        - "80:80"
+
+      depends_on:
+        - backend
+        
 volumes:
   mysql_data:
