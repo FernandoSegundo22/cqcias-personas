@@ -22,6 +22,7 @@
           <tr>
             <th>Nombre</th>
             <th>Teléfono</th>
+            <th>Accion</th>
           </tr>
         </thead>
 
@@ -35,12 +36,108 @@
               <td>
                 {{ persona.telefono }}
               </td>
+               <button
+                  type="button"
+                  class="btn btn-secondary"
+                  (click)="verDetalle(persona)">
+                  Ver detalles
+            </button>
             </tr>
           }
         </tbody>
 
       </table>
+
     </div>
+
+  }
+
+  @if (personaSeleccionada; as persona) {
+
+    <div
+      class="modal d-block"
+      tabindex="-1"
+      role="dialog">
+
+      <div
+        class="modal-dialog"
+        role="document">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+
+            <h5 class="modal-title">
+              Detalle de persona
+            </h5>
+
+            <button
+              type="button"
+              class="close"
+              aria-label="Cerrar"
+              (click)="cerrarDetalle()">
+
+              <span aria-hidden="true">
+                &times;
+              </span>
+
+            </button>
+
+          </div>
+
+          <div class="modal-body">
+
+            <p>
+              <strong>ID:</strong>
+              {{ persona.id }}
+            </p>
+
+            <p>
+              <strong>Nombre:</strong>
+              {{ persona.nombre }}
+            </p>
+
+            <p>
+              <strong>Primer apellido:</strong>
+              {{ persona.primerApellido }}
+            </p>
+
+            <p>
+              <strong>Segundo apellido:</strong>
+              {{ persona.segundoApellido || 'Sin segundo apellido' }}
+            </p>
+
+            <p>
+              <strong>Teléfono:</strong>
+              {{ persona.telefono }}
+            </p>
+
+            <p>
+              <strong>Estatus:</strong>
+              {{ persona.estatus }}
+            </p>
+
+          </div>
+
+          <div class="modal-footer">
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="cerrarDetalle()">
+              Cerrar
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-backdrop show"></div>
+
   }
 
 </div>

@@ -15,8 +15,10 @@ export class App implements OnInit {
   private readonly cdr = inject(ChangeDetectorRef);
 
   personas: Persona[] = [];
+  personaSeleccionada: Persona | null = null;
   cargando = true;
   error = '';
+
 
   ngOnInit(): void {
     this.cargarPersonas();
@@ -45,4 +47,13 @@ export class App implements OnInit {
     });
 
   }
+
+  verDetalle(persona: Persona): void {
+    this.personaSeleccionada = persona;
+  }
+
+  cerrarDetalle(): void {
+    this.personaSeleccionada = null;
+  }
+  
 }
