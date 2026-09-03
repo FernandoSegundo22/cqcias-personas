@@ -104,5 +104,5 @@ http://localhost:8080/api/personas/3
 
 --
 
-Detener la aplicación
+Detener la aplicación:
 docker compose down
